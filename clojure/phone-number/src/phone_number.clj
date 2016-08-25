@@ -3,9 +3,7 @@
 (require '[clojure.string :as s])
 
 (defn filter-number [number_string]
-  (reduce
-    #(s/replace %1 %2 "")
-    number_string ["." "(" ")" "-" " "]))
+  (apply str (filter #(Character/isDigit %) number_string)))
 
 (defn beautify [n]
   (format
