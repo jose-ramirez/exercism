@@ -1,0 +1,75 @@
+(for [x (range 0 6 -1)] (inc x))
+(for [x (range 0 6 -1)] x)
+(range 0 6 -1)
+(range 0 6)
+(range 6 0 -1)
+(range 6 -1 -1)
+(for [x (range 6 -1 -1)] (inc x))
+(require '[clojure.string :as string])
+(string/join "/" ["a" "b"])
+(defn f1 [start & finish] (range start (if (> (nth finish 0) 0) finish -1) -1))
+(f1 3)
+(f1 3 0)
+(f1 3 1)
+(f1 3 2)
+(f1 3 0)
+(f1 3 -1)
+(defn f2 [start & finish] finish)
+(f2 2)
+(f2 4 4)
+(nth nil 0)
+(= nil false)
+(= nil true)
+(def finish [1 2]) 
+(= finish nil)
+(not (= finish nil))
+(defn f1 [start & finish]
+  (range
+    start
+    (if (and (not (= finish nil)) (> (nth finish 0) 0)) finish -1)
+    -1
+  )
+)
+(f1 3 2)
+(f1 3 1)
+(f1 3 0)
+(defn f1 [start & finish]
+  (prn finish)
+  (range
+    start
+    (if (and (not (= finish nil)) (> (nth finish 0) 0)) finish -1)
+    -1
+  )
+)
+(f1 3 1)
+(doc nth)
+(defn f1 [start & finish]
+  (prn finish)
+  (range
+    start
+    (nth finish 0)
+    -1
+  )
+)
+(f1 3 1)
+(defn f1 [start & finish]
+  (range
+    start
+    (nth finish 0)
+    -1
+  )
+)
+(f1 3 1)
+(f1 3 -1)
+(f1 3)
+(defn f1 [start & finish]
+  (range
+    start
+    (if (not (= finish nil)) (nth finish 0) -1)
+    -1
+  )
+)
+(f1 3)
+(f1 3 2)
+(f1 3 1)
+(f1 3 0)
