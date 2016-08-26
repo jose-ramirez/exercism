@@ -1,0 +1,81 @@
+(load-file "robot_name.clj")
+(load-file "./robot_name.clj")
+(load-file "robot_name")
+(require '[robot-name :as r])
+(load-file "src/robot_name.clj")
+(load-file "robot_name.clj")
+(load-file "./robot_name.clj")
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(r/factory-name)
+(def robbie (r/robot))
+robbie
+(r/robot-name robbie)
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+(r/reset-name robbie)
+robbie
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+robbie
+(r/reset-name robbie)
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+robbie
+(def robbie (r/robot))
+robbie
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+robbie
+(r/reset-name robbie)
+robbie
+(load-file "src/robot_name.clj")
+(require '[robot-name :as r])
+(def robbie (r/robot))
+robbie
+(r/reset-name robbie)
+robbie
+(def a {:name "Jose"})
+(update-in a [:name] "Maria")
+(update-in a [:name] (str "Maria"))
+(update-in a [:name] (fn [s] "Maria"))
+a
+(def robbie {:name ""})
+robbie
+(defn robbies-name [r] (dosync (alter robbie update-in [:name] (r/factory-name))))
+(robbies-name robbie)
+(def robbie {:name "algo"})
+(defn robbies-name [r] (dosync (alter robbie update-in [:name] r/factory-name)))
+(robbies-name robbie)
+(def robbie (ref {:name "algo"}))
+(defn robbies-name [r] (dosync (alter robbie update-in [:name] r/factory-name)))
+(robbies-name robbie)
+@robbie
+(robbies-name robbie)
+@robbie
+robbie
+(r/robot-name robbie)
+(r/robot-name @robbie)
+(:name @robbie)
+(repeat 3 r/rand-digit)
+(repeat 3 rand-digit)
+(repeat 3 r/rand-digit)
+(r/rand-digit)
+(repeat 1 r/rand-digit)
+(def f1 (repeat 1 r/rand-digit))
+f1
+(f1)
+(take 3 (repeat r/rand-digit))
+(class f1)
+(doall f1)
+f1
+(doall (take 3 (repeat r/rand-digit)))
+(doall (take 1 (repeat r/rand-digit)))
+(doall (str (take 1 (repeat r/rand-digit))))
