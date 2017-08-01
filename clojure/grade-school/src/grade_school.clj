@@ -1,20 +1,19 @@
 (ns grade-school)
 
 ;Applies f to each value of m, returning the resulting map.
-(defn f-on-vals [f m]
+(defn- map-values [f m]
   (into {} (for [[k v] m] [k (f v)])))
 
 ;Adds a student to the database, joining the names into a
 ;vector when they're at the same grade.
-(defn add [students_db name grade]
-  (-> students_db
+(defn add [students-db name grade]
+  (-> students-db
     ((partial merge-with into) {grade [name]})))
 
 ;Returns all students at the specified grade.
-(defn grade [students_db grade]
-  (let [students (get students_db grade)]
-  (if (nil? students) [] students)))
+(defn grade [students-db grade]
+  (get students-db grade []))
 
 ;Sorts the students in the database by grade, then by name.
-(defn sorted [students_db]
-  (f-on-vals sort (into (sorted-map) students_db)))
+(defn sorted [students-db]
+  (map-values sort (into (sorted-map) students-db)))
