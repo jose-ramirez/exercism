@@ -1,5 +1,10 @@
 (ns meetup)
 
+(defn leap-year? [year]
+ (and
+   (= 0 (mod year 4))
+   (or (not= 0 (mod year 100)) (= 0 (mod year 400)))))
+
 (defn days-this-month-has [month year]
   (cond
     (= month 1) 31
@@ -65,6 +70,15 @@
 (defn day-keyword [day]
   (day-map (keyword (str day))))
 
+(defn day-of-week [day month year]
+  (let [
+    yc (year-code year)
+    mc (month-code month)
+    cc (century-code year)
+    lyc (leap-year-code year)]
+    (mod (- (+ yc mc cc day) lyc) 7)
+    ))
+
 (defn day-array [day month year]
   {(day-keyword (day-of-week day month year))
     (filter
@@ -74,15 +88,6 @@
 (defn day-arrays [month year]
     (apply merge (map #(day-array % month year) (range 0 7)))
 )
-
-(defn day-of-week [day month year]
-  (let [
-    yc (year-code year)
-    mc (month-code month)
-    cc (century-code year)
-    lyc (leap-year-code year)]
-    (mod (- (+ yc mc cc day) lyc) 7)
-    ))
 
 (defn meetup [month year day special]
   (let [d1 (day-arrays month year) d2 (day d1)]
