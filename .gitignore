@@ -209,3 +209,4 @@ $RECYCLE.BIN/
 Dockerfile
 docker-compose.yml
 .gradle/
+__pycache__
