@@ -1,92 +1,30 @@
-(ns meetup)
-
-(defn leap-year? [year]
- (and
-   (= 0 (mod year 4))
-   (or (not= 0 (mod year 100)) (= 0 (mod year 400)))))
-
-(defn days-this-month-has [month year]
-  (cond
-    (= month 1) 31
-    (and (= month 2) (not (leap-year? year))) 28
-    (and (= month 2) (leap-year? year)) 29
-    (= month 3) 31
-    (= month 4) 30
-    (= month 5) 31
-    (= month 6) 30
-    (= month 7) 31
-    (= month 8) 31
-    (= month 9) 30
-    (= month 10) 31
-    (= month 11) 30
-    (= month 12) 31
-    :else -1
-  ))
-
-(def month-map {
-  :1 0
-  :2 3
-  :3 3
-  :4 6
-  :5 1
-  :6 4
-  :7 6
-  :8 2
-  :9 5
-  :10 0
-  :11 3
-  :12 5
-  })
-
-(def day-map
-  {:0 :sunday
- :1 :monday
- :2 :tuesday
- :3 :wednesday
- :4 :thursday
- :5 :friday
- :6 :saturday})
-
-(defn leap-year? [year]
- (and
-   (= 0 (mod year 4))
-   (or (not= 0 (mod year 100)) (= 0 (mod year 400)))))
-
-(defn year-code [year]
- (let [yy (mod year 100) yyd4 (quot yy 4)]
-   (mod (+ yy yyd4) 7)))
-
-(defn month-code [month]
-  (month-map (keyword (str month))))
-
-(defn century-code [year]
-  (cond
-    (and (<= 1900 year) (< year 2000)) 0
-    (and (<= 2000 year) (< year 2100)) 6))
-
-(defn leap-year-code [year]
-  (if (leap-year? year) 1 0))
-
-(defn day-keyword [day]
-  (day-map (keyword (str day))))
-
-(defn day-of-week [day month year]
-  (let [
-    yc (year-code year)
-    mc (month-code month)
-    cc (century-code year)
-    lyc (leap-year-code year)]
-    (mod (- (+ yc mc cc day) lyc) 7)
-    ))
-
-(defn day-array [day month year]
-  {(day-keyword (day-of-week day month year))
-    (filter
-      #(= (mod % 7) day)
-      (range 1 (inc (days-this-month-has month year))))})
+(ns meetup
+  (:require [clj-time.core :as t]))
 
 (defn day-arrays [month year]
-    (apply merge (map #(day-array % month year) (range 0 7)))
+  (let [
+      num-days (t/number-of-days-in-the-month year month)
+      first-day (t/day-of-week (t/date-time year month 1))
+      day-range (range first-day (+ first-day num-days))
+      day-codes (map #(if (= (mod % 7) 0) 7 (mod % 7)) day-range)
+      mondays (keep-indexed #(if (= 1 %2) (inc %1) nil) day-codes)
+      tuesdays (keep-indexed #(if (= 2 %2) (inc %1) nil) day-codes)
+      wednesdays (keep-indexed #(if (= 3 %2) (inc %1) nil) day-codes)
+      thursdays (keep-indexed #(if (= 4 %2) (inc %1) nil) day-codes)
+      fridays (keep-indexed #(if (= 5 %2) (inc %1) nil) day-codes)
+      saturdays (keep-indexed #(if (= 6 %2) (inc %1) nil) day-codes)
+      sundays (keep-indexed #(if (= 7 %2) (inc %1) nil) day-codes)
+    ]
+    {
+      :monday mondays
+      :tuesday tuesdays
+      :wednesday wednesdays
+      :thursday thursdays
+      :friday fridays
+      :saturday saturdays
+      :sunday sundays
+    }
+  )
 )
 
 (defn meetup [month year day special]

@@ -6,6 +6,9 @@
 (deftest monteenth-of-may-2013
   (is (= [2013 5 13] (meetup/meetup 5 2013 :monday :teenth))))
 
+(deftest monteenth-of-may-2013
+  (is (= [2013 5 13] (meetup/meetup 5 2013 :monday :teenth))))
+
 (deftest monteenth-of-august-2013
   (is (= [2013 8 19] (meetup/meetup 8 2013 :monday :teenth))))
 
@@ -72,17 +75,11 @@
 (deftest first-monday-of-april-2013
   (is (= [2013 4 1] (meetup/meetup 4 2013 :monday :first))))
 
-(deftest first-tuesday-of-may-2013
-  (is (= [2013 5 7] (meetup/meetup 5 2013 :tuesday :first))))
-
 (deftest first-tuesday-of-june-2013
   (is (= [2013 6 4] (meetup/meetup 6 2013 :tuesday :first))))
 
 (deftest first-wednesday-of-july-2013
   (is (= [2013 7 3] (meetup/meetup 7 2013 :wednesday :first))))
-
-(deftest first-wednesday-of-august-2013
-  (is (= [2013 8 7] (meetup/meetup 8 2013 :wednesday :first))))
 
 (deftest first-thursday-of-september-2013
   (is (= [2013 9 5] (meetup/meetup 9 2013 :thursday :first))))
@@ -105,9 +102,6 @@
 (deftest first-sunday-of-march-2013
   (is (= [2013 3 3] (meetup/meetup 3 2013 :sunday :first))))
 
-(deftest first-sunday-of-april-2013
-  (is (= [2013 4 7] (meetup/meetup 4 2013 :sunday :first))))
-
 (deftest second-monday-of-march-2013
   (is (= [2013 3 11] (meetup/meetup 3 2013 :monday :second))))
 
@@ -116,6 +110,15 @@
 
 (deftest second-tuesday-of-may-2013
   (is (= [2013 5 14] (meetup/meetup 5 2013 :tuesday :second))))
+
+(deftest first-wednesday-of-august-2013
+  (is (= [2013 8 7] (meetup/meetup 8 2013 :wednesday :first))))
+
+(deftest first-tuesday-of-may-2013
+  (is (= [2013 5 7] (meetup/meetup 5 2013 :tuesday :first))))
+
+(deftest first-sunday-of-april-2013
+  (is (= [2013 4 7] (meetup/meetup 4 2013 :sunday :first))))
 
 (deftest second-tuesday-of-june-2013
   (is (= [2013 6 11] (meetup/meetup 6 2013 :tuesday :second))))
