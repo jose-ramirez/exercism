@@ -17,5 +17,3 @@ class Luhn(object):
             l1[ix] = 2 * l1[ix] if (2 * l1[ix] < 9) else 2 * l1[ix] - 9
 
         return sum(l1) % 10 == 0
-
-        

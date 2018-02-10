@@ -171,6 +171,9 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
+# VS Code stuff
+.vscode/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
@@ -210,3 +213,5 @@ Dockerfile
 docker-compose.yml
 .gradle/
 __pycache__
+*.pyc
+cache/
