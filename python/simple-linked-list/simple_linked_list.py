@@ -36,7 +36,7 @@ class LinkedList(object):
 
     def pop(self):
         if len(self.nodes) == 0:
-            raise EmptyListException("empty lsit")
+            raise EmptyListException("empty list")
         return self.nodes.pop().value()
 
     def reversed(self):
