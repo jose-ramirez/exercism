@@ -1,3 +1,4 @@
+#coding: utf-8
 class Luhn(object):
     def __init__(self, code):
         self._code = code
