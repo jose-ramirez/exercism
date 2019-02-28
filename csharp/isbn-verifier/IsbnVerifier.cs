@@ -27,11 +27,16 @@ public static class IsbnVerifier
 
     public static bool IsValid(string number)
     {
+        var xIndex = number.IndexOf("X");
         if (String.IsNullOrEmpty(number))
         {
             return false;
         }
-        if (number.IndexOf("X") != number.Length - 1)
+        if (xIndex == -1 && number.Length < 10)
+        {
+            return false;
+        }
+        if (0 < xIndex && xIndex < number.Length - 1)
         {
             return false;
         }
