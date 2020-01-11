@@ -142,7 +142,7 @@ UpgradeLog*.htm
 *.txt~
 *.swp
 *.swo
- 
+
 # svn
 .svn
 
@@ -215,3 +215,10 @@ docker-compose.yml
 __pycache__
 *.pyc
 cache/
+
+# I believe I won't be needing this though...
+.solution.json
+
+/target/
+**/*.rs.bk
+Cargo.lock
