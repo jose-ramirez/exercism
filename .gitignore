@@ -221,3 +221,10 @@ cache/
 
 /target/
 **/*.rs.bk
+
+.clj-kondo/
+.lsp/
+.calva/
+.lein-failures
+.lein-repl-history
+.nrepl-port
